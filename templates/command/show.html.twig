@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<table class="table">
+  <tbody>
+    <tr>
+      <td class="col"><strong>ID :</strong></td>
+      <td class="col">{{ command.id }}</td>
+    </tr>
+    <tr>
+      <td><strong>Email :</strong></td>
+      <td>{{ command.email }}</td>
+    </tr>
+    <tr>
+      <td><strong>Créer le :</strong></td>
+      <td>{{ command.createdAt|date("m/d/Y") }}</td>
+    </tr>
+  </tbody>
+</table>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Prix</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for product in listProduct %}
+        <tr>
+            <td><a href="{{ path('product.show', {id : product.id}) }}">{{ product.name }}</a></td>
+            <td>{{ product.price }}€</td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+
+
+
+

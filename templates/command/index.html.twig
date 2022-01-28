@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CommandController!{% endblock %}
+
+{% block body %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID Commande</th>
+      <th scope="col">Email client</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for command in listCommand %}
+        <tr>
+            <td><a href="{{ path('command.show', {id : command.id}) }}">{{ command.id }}</a></td>
+            <td>{{ command.email }}</td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

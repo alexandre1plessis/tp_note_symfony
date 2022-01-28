@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Produits par dates</th>
+                <th>Produits par prix</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in listPrice|keys %}
+                <tr>
+                    <td><a href="{{ path('product.show', {id : listPrice[product].id}) }}">{{ listPrice[product].name }}</a> Prix : <strong>{{ listPrice[product].price }}€</strong></td>
+                    <td><a href="{{ path('product.show', {id : listDate[product].id}) }}">{{ listDate[product].name }}</a> Date de création : <strong>{{ listDate[product].createdAt|date('d-m-Y') }}</strong></td>
+                <tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}

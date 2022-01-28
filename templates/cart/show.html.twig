@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<script>
+    function removeFromCart(id) {
+        fetch("/cart/delete/"+id)
+            .then(data => {
+            document.getElementById('btnpanier').disabled = true;
+            location.reload();
+        })
+    }
+</script>
+
+    <table>
+        <tr>
+            <th></th>
+            <th>Nom</th>
+            <th>Quantité</th>
+            <th>Prix</th>
+        </tr>
+
+    {% for product in products %}
+        <tr>
+            <td><button id="btnpanier" onclick="removeFromCart({{ product.id }})">Retirer</button></td>
+            <td>{{ product.name }}</td>
+            <td>{{ cart[product.id] }}</td>
+            <td>{{ product.price}}€</td>
+        </tr>
+    {% endfor %}
+
+    </table>
+
+    {{ form_start(form) }}
+        {{ form_row(form.email) }}
+
+        <button type="submit" class="btn btn-primary btn-block">
+            Valider la commande
+        </button>
+    {{ form_end(form) }}
+{% endblock %}
+
+
+
+
