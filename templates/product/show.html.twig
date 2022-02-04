@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 <script>
-    function addToCart() {
-        fetch("/cart/add/{{ product.id }}")
+    function addToCart(id) {
+        fetch("/cart/add/"+id)
             .then(data => {
             document.getElementById('btnpanier').disabled = true;
         })
@@ -11,7 +11,7 @@
     <h2>{{ product.name }}</h2>
     <p>{{ product.description }}</p>
     <p>Date : {{ product.createdAt|date('d/m/Y') }} Prix : {{ product.price }}€</p>
-    <button id="btnpanier" onclick="addToCart()">Ajouter au panier</button>
+    <button id="btnpanier" onclick="addToCart({{ product.id }})">Ajouter au panier</button>
 {% endblock %}
 
 
